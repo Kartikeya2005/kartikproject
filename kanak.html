@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Birthday Kanak!</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Roboto:wght@300;700&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Dancing Script', cursive;
+      background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+      color: #6d214f;
+      overflow-x: hidden;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+    }
+
+    .envelope-container {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .envelope {
+      width: 280px;
+      height: 170px;
+      background: #e91e63;
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0 10px 20px rgba(233, 30, 99, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      user-select: none;
+    }
+
+    .envelope::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #c2185b;
+      clip-path: polygon(0 0, 100% 0, 50% 50%);
+    }
+
+    .letter {
+      width: 90%;
+      background: white;
+      padding: 20px;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: top 1s ease-in-out;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      color: #6d214f;
+    }
+
+    .open .letter {
+      top: -60px;
+    }
+
+    .container {
+      display: none;
+      max-width: 800px;
+      margin: auto;
+      background: rgba(255, 245, 247, 0.95);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px 5px rgba(255, 64, 129, 0.6);
+      animation: glowPulse 3s ease-in-out infinite;
+    }
+
+    @keyframes glowPulse {
+      0%, 100% {
+        box-shadow: 0 0 20px 5px rgba(255, 64, 129, 0.6);
+      }
+      50% {
+        box-shadow: 0 0 30px 10px rgba(255, 64, 129, 0.9);
+      }
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 0.3em;
+      color: #ad1457;
+      text-shadow: 1px 1px 4px #fce4ec;
+    }
+
+    h2 {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 700;
+      color: #880e4f;
+    }
+
+    p {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 300;
+      font-size: 1.3em;
+      line-height: 1.6;
+      color: #6d214f;
+      white-space: pre-line;
+    }
+
+    .big-image {
+      width: 100%;
+      max-width: 450px;
+      border-radius: 20px;
+      margin: 20px 0;
+      box-shadow: 0 6px 15px rgba(109, 33, 79, 0.3);
+      border: 5px solid #ad1457;
+    }
+
+    .countdown {
+      font-size: 2.5em;
+      font-weight: 700;
+      color: #ffffff;
+      background: #d81b60;
+      border-radius: 50%;
+      width: 70px;
+      height: 70px;
+      line-height: 70px;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      user-select: none;
+      box-shadow: 0 0 10px #d81b60;
+      font-family: 'Dancing Script', cursive;
+    }
+
+    .scroll-container {
+      max-height: 300px;
+      overflow-y: auto;
+      margin-top: 30px;
+      padding: 20px;
+      border: 4px solid #ad1457;
+      border-radius: 15px;
+      background-color: rgba(252, 228, 236, 0.9);
+      display: none;
+      opacity: 0;
+      transition: opacity 1s ease-out;
+    }
+
+    .play-btn {
+      background-color: #d81b60;
+      color: white;
+      padding: 12px 30px;
+      font-size: 1.3em;
+      cursor: pointer;
+      border-radius: 10px;
+      border: none;
+      margin-top: 20px;
+      box-shadow: 0 5px 15px rgba(216, 27, 96, 0.7);
+    }
+
+    .play-btn:hover {
+      background-color: #ad1457;
+    }
+
+    #fireworks {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 1000;
+      text-align: center;
+      animation: fadeIn 1s ease-in-out forwards;
+    }
+
+    #fireworks img {
+      max-width: 100%;
+      max-height: 80vh;
+      margin-top: 40px;
+      user-select: none;
+    }
+
+    #fireworks h1 {
+      color: #ff80ab;
+      font-size: 3em;
+      text-shadow: 0 0 8px #ff4081;
+      margin-top: 20px;
+      user-select: none;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .surprise-letter {
+      margin-top: 30px;
+      display: none;
+    }
+
+    .surprise-letter img {
+      max-width: 300px;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body onload="startQuiz();">
+  <div class="envelope-container">
+    <div class="envelope" onclick="revealCard();">
+      <div class="letter">
+        <h2>💌 Open Me! 💌</h2>
+      </div>
+    </div>
+  </div>
+
+  <div id="birthday-card" class="container">
+    <h1>🎉 Happy Birthday Kanak didi! 🎉</h1>
+    <h2>My Sweet Sister, My Forever Friend</h2>
+
+    <audio id="bg-music" src="RAABTA.mp3" preload="auto" loop></audio>
+
+    <img src="Kanak.png" alt="Kanak dii's Photo" class="big-image" />
+
+    
+    <pre style="white-space: pre-wrap; font-family: 'Roboto', sans-serif; text-align: left; margin: 0 auto; max-width: 650px;">
+        <p>
+            Dear Kanak dii,<br /><br />
+            On your special day, I want you to know how much you mean to me. You’ve been
+            my guide, my support, and my constant source of joy. Your laughter brightens
+            even the darkest days, and your kindness touches everyone around you.<br /><br />
+            May this birthday bring you endless happiness, love, and all the wonderful things
+            you deserve.<br>
+            Keep shining and keep being amazing!<br>
+            Love always,<br />
+            Your loving sibling 💖
+        </p>
+        <h2>💌 A Poem Just for You 💌</h2>
+मैं कुछ और बात और अल्फाज़ लिखता हूँ…
+इस कविता के माध्यम से अपने रिश्ते की याद लिखता हूँ… ✍️❤️
+
+लोग कहते हैं उसे बहन, दीदी या अप्पी के नाम से,
+पर मैं उसे अपनी माँ कहता हूँ… 👩‍👦❤️
+किसी ने कहा था फूलों का तारों का सबका कहना है,
+एक हज़ारों में मेरी बहना है,
+पर तेरा क्या कहना तू तो करोड़ में है। 🌸✨
+
+कि मारा था जिसने मेरे ना पढ़ने पर..
+आज खड़ा हूँ उसी की वजह से इसी मुकाम पर.. 🎯👊
+
+अच्छा सुनाता हूँ आप सबको एक किस्सा..
+जब खेलने में उसने कील से मेरा चाँद फोड़ा था.. 🌙🔨
+याद है मुझे मेरा खून देखकर वो मुझसे ज़्यादा रोई थी… 😢
+शायद इतना कि मेरे सर पर बँधी पटी को देखकर उस रात न सोई थी… 😔
+
+स्वभाव में मेरे लिए हिटलर से कम नहीं, 😅
+पर तू तो है मेरी दूसरी माँ.. 🤱
+
+ना जाने कितनी बार मम्मी-पापा की डाँट से बचाया..
+और कितनी बार मेरे कर्म-कांड को छुपाया.. 🙏🤫
+
+अपनी इच्छाएँ मारती है,
+मेरी हर ज़रूरतें पूरी करती है… 🎁
+
+दिखाती है सबको कि इसके अंदर कितनी सख़्ती है..
+पर पता है मुझे कि ज़माने से बोलने में कितना डरती है… 🤐
+
+आख़िर में यही कहता हूँ
+कि तेरे लिए हर जगह तेरी कामयाबी की फरियाद करता हूँ, 🙏
+तुझे बता नहीं सकता मैं तुझसे कितना प्यार करता हूँ। ❤️
+    </pre>
+
+    <button class="play-btn" onclick="showSurprise()">🎁 Surprise Letter</button>
+
+    <div class="surprise-letter" id="surprise">
+      <h2>Chalo bday ki party ke liye paise do 🎉💸</h2>
+      <img src="QR.jpeg" alt="Scan QR for gift" />
+    </div>
+  </div>
+
+  <div class="scroll-container">
+    <h2>🎂 Birthday Wishes 🎂</h2>
+    <p id="typing"></p>
+  </div>
+
+  <div id="fireworks">
+    <img src="https://i.gifer.com/WS2k.gif" alt="Fireworks" />
+    <h1>🎉 Happy Birthday Kanak dii! 🎉</h1>
+  </div>
+
+  <script>
+    const typingText = "Kanak, you’re an amazing sister and a wonderful person! Wishing you joy, love, and laughter today and always! 🎈🎉";
+
+    function startQuiz() {
+      let answer = prompt("When is Kanak dii's birthday? (full date, e.g., 23 May 1998)");
+      if (answer && answer.toLowerCase() === "23 may 1998") {
+        startCountdown();
+      } else {
+        alert("Oops! Try again! 🎈");
+        startQuiz();
+      }
+    }
+
+    function startCountdown() {
+      const countdown = document.createElement("div");
+      countdown.classList.add("countdown");
+      countdown.textContent = "5";
+      document.querySelector(".envelope").appendChild(countdown);
+      let timeLeft = 5;
+      const interval = setInterval(() => {
+        timeLeft--;
+        countdown.textContent = timeLeft;
+        if (timeLeft === 0) {
+          clearInterval(interval);
+          revealCard();
+        }
+      }, 1000);
+    }
+
+    function revealCard() {
+      document.querySelector(".envelope").style.display = "none";
+      setTimeout(() => {
+        document.querySelector(".container").style.display = "block";
+        document.getElementById("bg-music").play();
+        showFireworks();
+        showScrollText();
+        startTypingAnimation();
+      }, 1500);
+    }
+
+    function showFireworks() {
+      const fireworks = document.getElementById("fireworks");
+      fireworks.style.display = "block";
+      setTimeout(() => {
+        fireworks.style.display = "none";
+      }, 5000);
+    }
+
+    function showScrollText() {
+      const scroll = document.querySelector(".scroll-container");
+      scroll.style.display = "block";
+      setTimeout(() => {
+        scroll.style.opacity = "1";
+      }, 100);
+    }
+
+    function startTypingAnimation() {
+      const typing = document.getElementById("typing");
+      let idx = 0;
+      function type() {
+        if (idx < typingText.length) {
+          typing.textContent += typingText.charAt(idx++);
+          setTimeout(type, 100);
+        }
+      }
+      type();
+    }
+
+    function showSurprise() {
+      document.getElementById("surprise").style.display = "block";
+    }
+  </script>
+</body>
+</html>
